@@ -2,4 +2,8 @@
     <string name="app_name">MyMarvelGallery</string>
     <string name="marvel_copyright_notice"> Data provided by Marvel. © 2019 MARVEL</string>
     <string name="search_hint">Search for character</string>
+    <string name="occurrences_comics_list_introduction">Comics:</string>
+    <string name="occurrences_series_list_introduction">Series:</string>
+    <string name="occurrences_stories_list_introduction">Stories:</string>
+    <string name="occurrences_events_list_introduction">Events:</string>
 </resources>

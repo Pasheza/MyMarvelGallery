@@ -8,6 +8,7 @@ import com.example.mymarvelgallery.R
 import com.example.mymarvelgallery.data.MarvelRepository
 import com.example.mymarvelgallery.model.MarvelCharacter
 import com.example.mymarvelgallery.presenter.MainPresenter
+import com.example.mymarvelgallery.view.character.CharacterProfileActivity
 import com.example.mymarvelgallery.view.common.BaseActivityWithPresenter
 import com.example.mymarvelgallery.view.common.addOnTextChangedListener
 import com.example.mymarvelgallery.view.common.bindToSwipeRefresh
@@ -35,12 +36,20 @@ class MainActivity : BaseActivityWithPresenter(), MainView {
     }
 
     override fun show(items: List<MarvelCharacter>) {
-        val categoryItemAdapters = items.map(::CharacterItemAdapter)
+        val categoryItemAdapters = items.map(::createCategoryItemAdapter)
         recyclerView.adapter = MainListAdapter(categoryItemAdapters)
     }
 
     override fun showError(error: Throwable) {
         toast("Error: ${error.message}") // 2
         error.printStackTrace()
+    }
+
+    private fun createCategoryItemAdapter(character: MarvelCharacter)
+            = CharacterItemAdapter(character
+    ) { showHeroProfile(character) }
+
+    private fun showHeroProfile(character: MarvelCharacter) {
+        CharacterProfileActivity.start(this, character)
     }
 }

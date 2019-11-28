@@ -11,14 +11,16 @@ import com.example.mymarvelgallery.view.common.loadImage
 import com.example.mymarvelgallery.model.MarvelCharacter
 
 class CharacterItemAdapter(
-    val character: MarvelCharacter // 1
+    val character: MarvelCharacter,
+    val clicked: (MarvelCharacter) -> Unit
 ) : ItemAdapter<CharacterItemAdapter.ViewHolder>(R.layout.item_character) {
 
     override fun onCreateViewHolder(itemView: View) = ViewHolder(itemView)
 
-    override fun ViewHolder.onBindViewHolder() { // 2
+    override fun ViewHolder.onBindViewHolder() {
         textView.text = character.name
-        imageView.loadImage(character.imageUrl) // 3
+        imageView.loadImage(character.imageUrl)
+        itemView.setOnClickListener { clicked(character) }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
