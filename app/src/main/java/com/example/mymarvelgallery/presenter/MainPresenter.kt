@@ -16,8 +16,15 @@ class MainPresenter(val view: MainView, val repository: MarvelRepository) : Base
         loadCharacters()
     }
 
-    private fun loadCharacters() {
-        subscriptions += repository.getAllCharacters()
+    fun onSearchChanged(text: String) {
+        loadCharacters(text)
+    }
+
+    private fun loadCharacters(searchQuery: String? = null) {
+        val qualifiedSearchQuery =
+            if (searchQuery.isNullOrBlank()) null
+            else searchQuery
+        subscriptions += repository.getAllCharacters(qualifiedSearchQuery)
             .applySchedulers()
             .doOnSubscribe { view.refresh = true }
             .doFinally { view.refresh = false }

@@ -9,6 +9,7 @@ import com.example.mymarvelgallery.data.MarvelRepository
 import com.example.mymarvelgallery.model.MarvelCharacter
 import com.example.mymarvelgallery.presenter.MainPresenter
 import com.example.mymarvelgallery.view.common.BaseActivityWithPresenter
+import com.example.mymarvelgallery.view.common.addOnTextChangedListener
 import com.example.mymarvelgallery.view.common.bindToSwipeRefresh
 import com.example.mymarvelgallery.view.common.toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,23 +20,17 @@ class MainActivity : BaseActivityWithPresenter(), MainView {
 
     override val presenter by lazy { MainPresenter(this, MarvelRepository.get()) }
 
-    private val characters = listOf(
-        MarvelCharacter(
-            name = "3-D Man", imageUrl =
-            "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"
-        ),
-        MarvelCharacter(
-            name = "Abomination (Emil Blonsky)", imageUrl =
-            "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4ce18691cbf04.jpg"
-        )
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_main)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         swipeRefreshView.setOnRefreshListener { presenter.onRefresh() }
+        searchView.addOnTextChangedListener {
+            onTextChanged { text, _, _, _ ->
+                presenter.onSearchChanged(text)
+            }
+        }
         presenter.onViewCreated()
     }
 
