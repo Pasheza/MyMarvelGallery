@@ -6,8 +6,8 @@ abstract class Provider<T> {
 
     private val instance: T by lazy { creator() }
 
-    var testingInstance: T? = null
+    var override: T? = null
 
-    fun get(): T = testingInstance ?: instance
+    fun get(): T = override ?: instance
 
 }

@@ -1,7 +1,8 @@
-package com.example.mymarvelgallery.helpers
+package com.example.mymarvelgallery
 
 import com.example.mymarvelgallery.model.MarvelCharacter
 import com.example.mymarvelgallery.view.main.MainView
+
 
 class BaseMainView(
     var onShow: (items: List<MarvelCharacter>) -> Unit = {},

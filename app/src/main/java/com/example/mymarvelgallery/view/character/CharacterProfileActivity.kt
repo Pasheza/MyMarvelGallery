@@ -59,5 +59,9 @@ class CharacterProfileActivity : AppCompatActivity() {
                 .apply { putExtra(CHARACTER_ARG, character) }
             context.startActivity(intent)
         }
+
+        fun getIntent(context: Context, character: MarvelCharacter) = context
+            .getIntent<CharacterProfileActivity>()
+            .apply { putExtra(CHARACTER_ARG, character) }
     }
 }

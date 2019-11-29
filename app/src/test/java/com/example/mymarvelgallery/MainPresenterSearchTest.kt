@@ -2,8 +2,6 @@
 
 package com.example.mymarvelgallery
 
-import com.example.mymarvelgallery.helpers.BaseMainView
-import com.example.mymarvelgallery.helpers.BaseMarvelRepository
 import com.example.mymarvelgallery.presenter.MainPresenter
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins

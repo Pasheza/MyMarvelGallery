@@ -1,6 +1,5 @@
 package com.example.mymarvelgallery.view.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import androidx.recyclerview.widget.GridLayoutManager
